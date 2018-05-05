@@ -8,9 +8,12 @@ def main():
     parser = argparse.ArgumentParser(description="Analyze the text of a file.")
     parser.add_argument("filename", nargs="?",
                         help="Name of the file to be analyzed")
-    filename = parser.parse_args().filename
+    parser.add_argument("--hist-scale", default=20, type=int,
+                        help="Max length of a line in the histogram.")
+    arguments = parser.parse_args()
+    filename = arguments.filename
 
-    hist_scale = 20
+    hist_scale = arguments.hist_scale
     hist_sym = "*"
     char_freqs = {chr(val): 0 for val in range(32, 127)}
     char_count = 0
